@@ -19,6 +19,8 @@
                 // Validate Email
                 if(empty($data['email'])) {
                     $data['email_err'] = 'Please enter email';
+                } else if(!$this->userModel->checkUserExistByEmail($data['email'])) {
+                    $data['email_err'] = 'User does not exist';
                 }
                 
                 // Validate Password

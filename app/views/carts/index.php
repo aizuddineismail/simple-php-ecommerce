@@ -82,7 +82,7 @@
             $(this).text(products[index]['quantity']);
         })
         
-        function save() {
+        function save(callback) {
             items = [];
             
             $('.quantity').each(function(index) {
@@ -98,7 +98,21 @@
                 type: 'PUT',
                 success: function(msg) {
                         $('div.modal-body').text(msg);
-                        $('#cart-modal').modal('toggle');
+                        callback()
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Failed to save');
+                    console.log(errorThrown);
+                }
+            })
+        }
+
+        function proceed() {
+            $.ajax({
+                url: `${urlroot}/orders`,
+                type: 'POST',
+                success: function(msg) {
+                    $('#proceedForm').submit();
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert('Failed to save');
@@ -153,7 +167,8 @@
         })
 
         $('#saveButton').click(function(){
-            save()
+            save(function(){console.log('Saving')})
+            $('#cart-modal').modal('toggle');
             });
             // function() {
             // items = [];
@@ -182,19 +197,19 @@
 
         
         $('#proceedButton').click(function() {
-            save();
+            save(proceed);
 
-            $.ajax({
-                url: `${urlroot}/orders`,
-                type: 'POST',
-                success: function(msg) {
-                    $('#proceedForm').submit();
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert('Failed to save');
-                    console.log(errorThrown);
-                }
-            })
+            // $.ajax({
+            //     url: `${urlroot}/orders`,
+            //     type: 'POST',
+            //     success: function(msg) {
+            //         $('#proceedForm').submit();
+            //     },
+            //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //         alert('Failed to save');
+            //         console.log(errorThrown);
+            //     }
+            // })
         })
     })
 </script>

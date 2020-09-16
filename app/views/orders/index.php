@@ -70,7 +70,7 @@
             let order_status = orders[index]['order_status']
             console.log(order_status)
             if(order_status == 'Payment pending') {
-                $(this).attr("style", "width: 25%")
+                $(this).attr("style", "width: 5%")
                 $(this).addClass("bg-warning")
 
             } else if(order_status == "Processing") {

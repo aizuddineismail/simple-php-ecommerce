@@ -16,3 +16,6 @@
     define('MANGO_USERNAME', '<YOUR_API_USERNAME>');
     define('MANGO_PASSWORD', '<YOUR_API_PASSWORD>');
     define('MANGO_URL', 'https://mangomart-autocount.myboostorder.com/wp-json/wc/v1/products');
+
+    //CDN
+    define('FONT_AWESOME_CDN', '<YOUR_FONT_AWESOME_CDN>');

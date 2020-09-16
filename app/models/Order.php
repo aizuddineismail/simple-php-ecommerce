@@ -12,7 +12,7 @@
             }
         }
 
-        public function orderSingle($userId, $productId, $quantity, $orderStatus='Processing') {
+        public function orderSingle($userId, $productId, $quantity, $orderStatus='Payment pending') {
             $this->db->query('INSERT INTO orders (user_id, product_id, quantity, order_status) VALUES (:user_id, :product_id, :quantity, :orderStatus)');
 
             $this->db->bind(':user_id', $userId);

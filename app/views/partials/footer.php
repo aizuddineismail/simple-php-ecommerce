@@ -26,11 +26,13 @@
     var urlroot = '<?php echo URLROOT; ?>'
     var unreadNotification = 0;
     const audio = new Audio(`${urlroot}/public/audio/notifications.mp3`)
+    var isLoggedIn = '<?php echo isLoggedIn(); ?>'
 
     $(document).ready(function() {
-        
-        setInterval(getNewNotification, 1000);
-        updateNotification();
+        if(isLoggedIn) {
+            setInterval(getNewNotification, 1000);
+            updateNotification();
+        }
 
         function getNewNotification() {
             $.ajax({
@@ -55,9 +57,9 @@
                         $('#notification').removeClass("fa-layers-counter")
                     }
                 },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert('Something went wrong');
-                }
+                // error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //     alert('Something went wrong');
+                // }
             })
         }
 
